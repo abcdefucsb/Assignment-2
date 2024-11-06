@@ -6,6 +6,6 @@ build-backend = "flit_core.buildapi"
 name = "regression"
 authors = [{name = "Shiyang Xin", email = "shiyang.xin@ucsf.edu"}]
 readme = "README.md"
-license = {file = "LICENSE"}
-classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
+
+version = "1.0.0"
