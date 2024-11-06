@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import math
 
 class BaseRegressor():
     def __init__(self, num_feats, learning_rate=0.1, tol=0.001, max_iter=100, batch_size=12):
@@ -23,6 +24,10 @@ class BaseRegressor():
         # Defining list for storing Loss History: Makes it so you can visualize your loss descending, ascending, or not moving
         self.loss_history_train = []
         self.loss_history_val = []
+        self.gradient_history=[]
+        self.W_history=[]
+        
+        
         
     def calculate_gradient(self, X, y):
         # Kept empty as when you are inheriting, you overwrite this with LogisticRegression's calculate_gradient method
@@ -65,11 +70,13 @@ class BaseRegressor():
             
             # Generating list to save the param updates per batch
             update_size_epoch = []
+           
             
             # Iterating through batches (full for loop is one epoch of training)
             for X_train, y_train in zip(X_batch, y_batch):
                 # Making prediction on batch
                 y_pred = self.make_prediction(X_train)
+               
                 
                 # Calculating loss
                 loss_train = self.loss_function(X_train, y_train)
@@ -81,10 +88,13 @@ class BaseRegressor():
                 prev_W = self.W
                 # Calculating gradient of loss function with respect to each parameter
                 grad = self.calculate_gradient(X_train, y_train)
+                self.gradient_history.append(grad)
+           
                 
                 # Updating parameters
                 new_W = prev_W - self.lr * grad 
                 self.W = new_W
+                self.W_history.append(self.W)
                 
                 # Saving step size
                 update_size_epoch.append(np.abs(new_W - prev_W))
@@ -150,9 +160,12 @@ class LogisticRegression(BaseRegressor):
         Returns: 
             gradients for a given loss function type np.ndarray (n-dimensional array)
         """
+        y_pred=self.make_prediction(X)
+        gradient=2*np.dot(X.T,(y_pred-y))/len(X)
+       
+        return gradient
         
-        
-        pass
+        #pass
     
     def loss_function(self, X, y) -> float:
         """
@@ -168,7 +181,15 @@ class LogisticRegression(BaseRegressor):
         Returns: 
             average loss 
         """
-        pass
+        loss=0
+        y_pred=self.make_prediction(X)
+        
+        for i in range(0,y.shape[0]):
+            loss += y[i]*math.log(y_pred[i])+(1-y[i])*math.log(1-y_pred[i])
+        loss=-loss/len(y_pred)
+        return loss
+        
+        #pass
     
     def make_prediction(self, X) -> np.array:
         """
@@ -183,8 +204,13 @@ class LogisticRegression(BaseRegressor):
             y_pred for given X
         """
 
-        pass
-
+        #pass
+        
+        
+        y_pred=np.dot(X,self.W)
+        for i in range(0,y_pred.shape[0]):
+            y_pred[i]=(1)/(1+(math.e)**(-y_pred[i]))
+        return y_pred
 
 
     
