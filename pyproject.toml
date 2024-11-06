@@ -4,11 +4,8 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "regression"
-authors = [{name = "Shiyang Xin", email = "Shiyang.xin@ucsf.edu"}]
+authors = [{name = "Shiyang Xin", email = "shiyang.xin@ucsf.edu"}]
 readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
-
-[project.urls]
-Home = "https://github.com/abcdefucsb"
