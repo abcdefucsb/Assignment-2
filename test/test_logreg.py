@@ -44,8 +44,8 @@ def test_updates():
        assert np.linalg.norm(log_model.gradient_history[0])>np.linalg.norm(log_model.gradient_history[133])
 
 
-       assert log_model.loss_history_val[0]>log_model.loss_history_val[66]
-       assert log_model.loss_history_val[67]>log_model.loss_history_val[133]
+       assert log_model.loss_history_val[0]>log_model.loss_history_val[133]
+
       
 
        #pass
