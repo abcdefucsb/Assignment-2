@@ -45,7 +45,7 @@ def test_updates():
 
 
        assert log_model.loss_history_val[0]>log_model.loss_history_val[133]
-
+       assert 0.5>log_model.loss_history_val[133]
       
 
        #pass
