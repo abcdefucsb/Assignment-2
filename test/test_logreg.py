@@ -41,14 +41,14 @@ def test_updates():
 	# What is a reasonable loss?
        log_model = logreg.LogisticRegression(num_feats=27, max_iter=1000, tol=0.01, learning_rate=0.1, batch_size=12)
        log_model.train_model(X_train, y_train, X_val, y_val)
-       assert np.linalg.norm(log_model.gradient_history[0])>np.linalg.norm(log_model.gradient_history[133])
+       assert np.linalg.norm(log_model.gradient_history[0])>np.linalg.norm(log_model.gradient_history[133])#assert the norm of first gradient is larger than the norm of last gradient
 
 
-       assert log_model.loss_history_val[0]>log_model.loss_history_val[133]
-       assert 0.5>log_model.loss_history_val[133]
+       assert log_model.loss_history_val[0]>log_model.loss_history_val[133]#assert the first validation loss is larger than the last validation loss
+       assert 0.5>log_model.loss_history_val[133]#assert the last validation loss is smaller than 0.5
 
-       assert log_model.loss_history_train[0]>log_model.loss_history_train[133]
-       assert 0.5>log_model.loss_history_train[133]
+       assert log_model.loss_history_train[0]>log_model.loss_history_train[133]#assert the first training loss is larger than the last training loss
+       assert 0.5>log_model.loss_history_train[133]#assert the last training loss is smaller than 0.5
        
        #pass
 
@@ -57,8 +57,8 @@ def test_predict():
  	# and produces reasonable estimates for NSCLC classification
        log_model = logreg.LogisticRegression(num_feats=27, max_iter=1000, tol=0.01, learning_rate=0.1, batch_size=12)
        log_model.train_model(X_train, y_train, X_val, y_val)
-       assert np.linalg.norm(log_model.W_history[0])!=np.linalg.norm(log_model.W_history[66])
-       assert np.linalg.norm(log_model.W_history[67])!=np.linalg.norm(log_model.W_history[133]) 
+       assert np.linalg.norm(log_model.W_history[0])!=np.linalg.norm(log_model.W_history[66]) #assert the 1st weights are different from the 67th weights
+       assert np.linalg.norm(log_model.W_history[67])!=np.linalg.norm(log_model.W_history[133]) #assert the 68th weights are different from the 134th weights
        
 	# What should the output should look like for a binary classification task?
 
