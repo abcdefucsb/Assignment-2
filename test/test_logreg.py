@@ -64,4 +64,4 @@ def test_predict():
        #result=np.dot(X_train,log_model.W_history[-1])
        # for i in range(0,len(y_val)):
 
-       pass
+       #pass
