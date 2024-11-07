@@ -43,17 +43,17 @@ def main():
     log_model = logreg.LogisticRegression(num_feats=27, max_iter=1000, tol=0.01, learning_rate=0.1, batch_size=12)
     log_model.train_model(X_train, y_train, X_val, y_val)
     log_model.plot_loss_history()
-    ones=np.ones((X_val.shape[0],1))
-    print(ones.shape)
-    X_val=np.hstack([X_val,ones])
-    result=np.dot(X_val,log_model.W_history[-1])
-    for i in range(0,result.shape[0]):
-            result[i]=(1)/(1+(math.e)**(-result[i]))
-            if result[i]<0.5:
-                 result[i]=0
-            else:
-                 result[i]=1
-    print(result)
+    # ones=np.ones((X_val.shape[0],1))
+    # print(ones.shape)
+    # X_val=np.hstack([X_val,ones])
+    # result=np.dot(X_val,log_model.W_history[-1])
+    # for i in range(0,result.shape[0]):
+    #         result[i]=(1)/(1+(math.e)**(-result[i]))
+    #         if result[i]<0.5:
+    #              result[i]=0
+    #         else:
+    #              result[i]=1
+    # print(result)
     
    
 
